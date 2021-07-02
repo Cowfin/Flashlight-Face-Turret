@@ -4,7 +4,6 @@ import time
 
 GPIO.setmode(GPIO.BOARD)
 
-#
 GPIO.setup(11, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
 servoX = GPIO.PWM(11,50)
@@ -18,8 +17,6 @@ face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 #Capture video from webcam. 
 cap = cv2.VideoCapture(0)
-#Use a video as input 
-#cap = cv2.VideoCapture('video.mp4')
 
 #Wait 1 second
 time.sleep(1)
@@ -29,6 +26,7 @@ def Convert_Coordinates(x,y,width,height):
     motor_x = (180.0/(width/(x+0.001)))
     motor_y = (180.0/(height/(y+0.001)))
     return motor_x, motor_y
+
 
 #Converts degrees to DutyCycle value
 def Convert_Angle(angle):
@@ -74,3 +72,6 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows
+servoX.stop()
+servoY.stop()
+GPIO.cleanup()
