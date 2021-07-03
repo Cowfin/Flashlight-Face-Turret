@@ -30,7 +30,7 @@ servoY = GPIO.PWM(13,50)
 servoX.start(0)
 servoY.start(0)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(2)
 
 x_Pos = 0.0
 y_Pos = 0.0

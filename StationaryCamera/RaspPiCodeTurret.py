@@ -53,11 +53,11 @@ while True:
         #Draw a dot where the center of the face is
         cv2.circle(frame,(int(x+w/2),int(y+h/2)),2,(0,255,0),-1)
         x_Pos = (x + w/2)
-        y_Pos = (y + h/2)
+        y_Pos = height - (y + h/2)
         break
 
     motor_x = x_Pos/width * x_Range + minX
-    motor_y = y_Pos/width * y_Range + minY
+    motor_y = y_Pos/height * y_Range + minY
 
     servoX.ChangeDutyCycle(Convert_Angle(motor_x))
     servoY.ChangeDutyCycle(Convert_Angle(motor_y))
