@@ -9,8 +9,8 @@ GPIO.setup(13, GPIO.OUT)
 servoX = GPIO.PWM(11,50)
 servoY = GPIO.PWM(13,50)
 
-servoX.start(0)
-servoY.start(0)
+servoX.start(90)
+servoY.start(90)
 
 #Load the facial detection cascade
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -39,7 +39,7 @@ while True:
     _, frame = cap.read()
     height, width, _ = frame.shape
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) 
 
     #Detect faces
     faces = face_cascade.detectMultiScale(gray, 1.1, 4)
@@ -60,7 +60,6 @@ while True:
     motor_x,motor_y = Convert_Coordinates(x_pos,y_pos,width,height)
     servoX.ChangeDutyCycle(Convert_Angle(motor_x))
     servoY.ChangeDutyCycle(Convert_Angle(motor_y))
-    time.sleep(0.5)
     
     #Display image
     cv2.imshow('frame', frame)
